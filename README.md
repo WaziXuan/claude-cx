@@ -34,23 +34,17 @@ CX Mode formalizes this division. You describe what you need; Claude breaks it d
 
 ## Installation
 
-Copy the two command files to your Claude Code user commands directory:
-
-**macOS / Linux**
+**macOS / Linux** — one line:
 ```bash
-mkdir -p ~/.claude/commands
-cp commands/cx.md ~/.claude/commands/cx.md
-cp commands/cx-help.md ~/.claude/commands/cx-help.md
+mkdir -p ~/.claude/commands && curl -sL https://raw.githubusercontent.com/WaziXuan/claude-cx/master/commands/cx.md -o ~/.claude/commands/cx.md && curl -sL https://raw.githubusercontent.com/WaziXuan/claude-cx/master/commands/cx-help.md -o ~/.claude/commands/cx-help.md
 ```
 
-**Windows**
+**Windows (PowerShell)** — one line:
 ```powershell
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.claude\commands" | Out-Null
-Copy-Item commands\cx.md "$env:USERPROFILE\.claude\commands\cx.md"
-Copy-Item commands\cx-help.md "$env:USERPROFILE\.claude\commands\cx-help.md"
+$d="$env:USERPROFILE\.claude\commands"; New-Item -ItemType Directory -Force $d | Out-Null; Invoke-WebRequest "https://raw.githubusercontent.com/WaziXuan/claude-cx/master/commands/cx.md" -OutFile "$d\cx.md"; Invoke-WebRequest "https://raw.githubusercontent.com/WaziXuan/claude-cx/master/commands/cx-help.md" -OutFile "$d\cx-help.md"
 ```
 
-Then reload commands in Claude Code:
+Then reload in Claude Code:
 ```
 /reload-plugins
 ```
